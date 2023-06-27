@@ -10,7 +10,7 @@ model = Transformer()
 model.load_model()
 
 
-@app.route('/api/summarize', method=['POST', 'GET'])
+@app.route('/api/summarize', methods=['POST', 'GET'])
 def summarize():
     global model
     if request.method == 'POST':
