@@ -7,20 +7,16 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.before_first_request
-def before_first_request():
-    global model
-    model = Transformer()
-    model.load_model()
-
-
 @app.route('/api/summarize', methods=['POST', 'GET'])
 def summarize():
-    global model
+    model = Transformer()
+    model.load_model()
+    print('$$$$$$$$$$$$$$$$$$$$$$$$', model)
     if request.method == 'POST':
         text = ""
         try:
             text = request.get_json()['content']  # @param {type:"string"}
+            print(request.get_json())
         except:
             return {'status': "Data must have content field"}
 
@@ -31,3 +27,7 @@ def summarize():
             ' This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.')
         print(summary_text)
         return summary_text
+
+
+if __name__ == "__main__":
+    app.run()
