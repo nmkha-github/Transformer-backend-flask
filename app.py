@@ -11,8 +11,15 @@ model.load_model()
 
 
 @app.route('/api/summarize')
-def get():
+def SummarizePage():
     return '<h1>Hello</h1>'
+
+
+@app.get('/api/summarize')
+def get():
+    text = model.summarize('abcasc masckas maskc mckmkc')
+    print(text)
+    return text
 
 
 @app.post('/api/summarize')
@@ -29,4 +36,5 @@ def summarize():
 
 
 if __name__ == '__main__':
+
     app.run(debug=False)
