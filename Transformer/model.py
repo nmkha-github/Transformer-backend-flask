@@ -10,6 +10,7 @@ class Transformer:
             self.summarizer = pipeline(
                 "summarization", model="Phongle1311/my_awesome_billsum_model")
         except:
+            print('$$$$$$$$$$$$$$$$$$ load model error ')
             return False
 
         return True
