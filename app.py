@@ -10,31 +10,20 @@ model = Transformer()
 model.load_model()
 
 
-@app.route('/api/summarize')
-def SummarizePage():
-    return '<h1>Hello</h1>'
-
-
-@app.get('/api/summarize')
-def get():
-    text = model.summarize('abcasc masckas maskc mckmkc')
-    print(text)
-    return text
-
-
-@app.post('/api/summarize')
+@app.route('/api/summarize', method=['POST', 'GET'])
 def summarize():
     global model
-    text = ""
-    try:
-        text = request.get_json()['content']  # @param {type:"string"}
-    except:
-        return {'status': "Data must have content field"}
+    if request.method == 'POST':
+        text = ""
+        try:
+            text = request.get_json()['content']  # @param {type:"string"}
+        except:
+            return {'status': "Data must have content field"}
 
-    summary_text = model.summarize(text)[0]
-    return jsonify({'summary_text': summary_text})
-
-
-if __name__ == '__main__':
-
-    app.run(debug=False)
+        summary_text = model.summarize(text)[0]
+        return jsonify({'summary_text': summary_text})
+    else:
+        summary_text = model.summarize(
+            ' This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.')
+        print(summary_text)
+        return summary_text
