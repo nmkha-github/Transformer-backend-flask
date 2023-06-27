@@ -1,3 +1,4 @@
+import torch
 from transformers import pipeline
 
 
@@ -7,8 +8,7 @@ class Transformer:
 
     def load_model(self):
         try:
-            self.summarizer = pipeline(
-                "summarization", model="Phongle1311/my_awesome_billsum_model")
+            self.summarizer = torch.load('Transformer/m.pkl')
         except:
             print('$$$$$$$$$$$$$$$$$$ load model error ')
             return False

@@ -3,3 +3,5 @@ transformers
 gunicorn
 flask-cors
 tqdm
+torch
+gdown
