@@ -9,10 +9,8 @@ CORS(app)
 
 @app.route('/api/summarize', methods=['POST', 'GET'])
 def summarize():
-    global model
-    if model == None:
-        model = Transformer()
-        model.load_model()
+    model = Transformer()
+    model.load_model()
     print('$$$$$$$$$$$$$$$$$$$$$$$$', model)
     if request.method == 'POST':
         text = ""
