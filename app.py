@@ -8,7 +8,7 @@ model = Transformer()
 model.load_model()
 
 
-@app.get('/api/summarize')
+@app.route('/api/summarize')
 def get():
     return '<h1>Hello</h1>'
 
@@ -24,3 +24,7 @@ def summarize():
 
     summary_text = model.summarize(text)[0]
     return jsonify({'summary_text': summary_text})
+
+
+if __name__ == '__main__':
+    app.run(debug=False)
