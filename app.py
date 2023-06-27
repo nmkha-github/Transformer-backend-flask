@@ -6,8 +6,12 @@ from Transformer.model import Transformer
 app = Flask(__name__)
 CORS(app)
 
-model = Transformer()
-model.load_model()
+
+@app.before_first_request
+def before_first_request():
+    global model
+    model = Transformer()
+    model.load_model()
 
 
 @app.route('/api/summarize', methods=['POST', 'GET'])
