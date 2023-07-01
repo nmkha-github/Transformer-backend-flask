@@ -5,7 +5,7 @@ import json
 from Transformer.Model import Model
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 model = Model()
 
@@ -41,8 +41,8 @@ def question_answering():
             + "<br>" + json.dumps(result) + \
             "</p>"
 
-
-model.load_model('summarization')
+# uncomment for summarization api
+# model.load_model('summarization')
 
 
 @app.route('/api/summarization', methods=['POST', 'GET'])
