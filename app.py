@@ -10,6 +10,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 model = Model()
 
 model.load_model('question-answering')
+# torch.save(model.question_answering, 'model_weight.pkl')
 
 
 @app.route('/api/question_answering', methods=['POST', 'GET'])

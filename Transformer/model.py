@@ -13,7 +13,8 @@ class Model:
                 self.summarizer = pipeline(
                     'summarization', 'phongle1311/my_awesome_billsum_model')
             elif task == 'question-answering':
-                self.question_answering = pipeline("question-answering")
+                self.question_answering = pipeline(
+                    "question-answering", 'QuangHuy54/roberta-base-squad-1')
         except:
             print('$$$$$$$$$$$$$$$$$$ load model error ')
             return False
